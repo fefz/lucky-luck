@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>优惠券使用说明</title>
+    <style>
+        html, body{
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            /*background-color: #ff5152;*/
+            padding: 0;
+            background: url(images/prizeBG.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .card{
+            color: #333333;
+            position: absolute;
+            margin: 0 auto;
+            left: 10%;
+            width: 80%;
+            height: 90%;
+            overflow: hidden;
+            top: 5%;
+        }
+    </style>
+</head>
+<body>
+<!--使用说明-->
+<div class="card">
+    <div class="card-text" id="text">
+        <div style="text-align: center"><strong style="color:#53441c ">使用说明</strong></div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script>
+    var openId,voteSub;
+    var ruleText = $('#text');
+    $().ready(function () {
+        openId = sessionStorage.getItem('openId');
+        //隐藏微信浏览器分享等菜单
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            WeixinJSBridge.call('hideToolbar');
+            WeixinJSBridge.call('hideOptionMenu');
+        });
+
+        //强制跳转
+        if (openId == null || ''){window.location.href = 'vote.html'}else{
+            voteSub=JSON.parse(sessionStorage.getItem('voteSub'));
+            sweepstakesId=voteSub.sweepstakesId;
+        }
+
+        //获取优惠券使用
+        var rule = voteSub.arg2.split('#');
+        for (var i=0;i<rule.length;i++){
+            console.log(rule[i]);
+            ruleText.append('<p>'+rule[i]+'</p>');
+        }
+    })
+</script>
+</body>
+</html>

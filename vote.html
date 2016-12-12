@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title></title>
+    <!--<link rel="stylesheet" href="css/base.css">-->
+    <link rel="stylesheet" href="css/vote.css">
+    <link rel="stylesheet" href="css/dropload.css">
+    <link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/1.0.2/weui.min.css">
+    <link rel="stylesheet" href="js/dist/default-skin/default-skin.css">
+    <link rel="stylesheet" href="js/dist/photoswipe.css">
+    <link href='//cdn.webfont.youziku.com/webfonts/nomal/90572/46861/581be98cf629d80df8fad7c8.css' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="css/mobile-util.css">
+</head>
+<body>
+<!--主体内容-->
+<div class="container">
+    <div class="slide" id="slide">
+        <ul id="subImgSlide"></ul>
+    </div>
+    <div class="vote-number-warp">
+        <img src="images/red.png">
+    </div>
+    <div class="rule-wrap-box">
+        <div class="rule-wrap"></div>
+    </div>
+    <div class="join-wrap">
+        <div class="button-sp-area"> <a onclick="goJoin()" class="weui-btn weui-btn_plain-default"><em>立即加入</em></a>
+
+        </div>
+    </div>
+    <div class="vote-list-wrap">
+        <div style="text-align: center;padding-bottom: 10px">
+            <img src="images/purple.png" width="100%">
+        </div>
+        <div class="vote-prize-box">
+            <button id="myPrize">我的奖品</button>
+        </div>
+        <div class="search-warp">
+            <div class="weui-search-bar" id="searchBar">
+                <form class="weui-search-bar__form">
+                    <div class="weui-search-bar__box"> <i class="weui-icon-search"></i>
+
+                        <input  type="text" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+                        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                    </div>
+                    <label class="weui-search-bar__label" id="searchText"> <i class="weui-icon-search"></i>
+                        <span>搜索</span>
+                    </label>
+                </form>
+                <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">
+                    <img style="position:relative; top: 5px;" width="20px" src="images/Search.png">
+                </a>
+            </div>
+        </div>
+        <div class="list-wrap">
+            <div class="hottest-wrap">
+                <div class="inner">
+                    <ul class="headlist"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--图片查看-->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                    <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
+                    <!-- <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> -->
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--二维码弹窗-->
+<div class="modal2" id="modal2">
+    <div class="modal_container">
+        <div class="wechat_mp">
+            <p id="close_modal" style="text-align: right;margin: 0;padding: 0;color: #B1ADAC"><small>关闭</small>
+            </p>
+            <p style="color: #00566a">关注公众号后才能参加活动</p> <small style="color: #3e3a39">关注家有常青树，尽享更多精彩</small>
+
+            <div style="text-align: center">
+                <img src="images/qrcode.jpg">
+            </div> <small style="color: #9fa0a0">长按识别图中二维码</small>
+
+        </div>
+    </div>
+</div>
+<!--投票失败开始-->
+<div class="lose-notice">
+    <div class="bg">
+        <div class="text">
+            <p id="loseText"></p>
+        </div>
+    </div>
+    <div class="close-lose-notice" style="text-align: center;padding-top: 30px;">
+        <img id="close-lose-notice" width="35" height="35" src="images/close.png">
+    </div>
+</div>
+<!--投票失败结束-->
+<!--投票成功开始-->
+<div class="con-notice">
+    <div class="bg">
+        <div class="text">
+            <p>投票成功</p>
+            <p class="item"></p>
+            <p style="font-size: 14px;color: #777;">获得一次抽奖机会</p>
+        </div>
+    </div>
+    <div class="close-con-notice" style="text-align: center;padding-top: 30px;">
+        <img id="goLuckDraw" width="35" height="35" src="images/close.png">
+    </div>
+</div>
+<!--投票成功结束-->
+
+<!--BEGIN dialog2-->
+<div class="js_dialog" id="iosDialog2" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__bd"></div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" onclick="ok()">知道了</a>
+        </div>
+    </div>
+</div>
+<!--END dialog2-->
+<!--旋转提示-->    <!-- 选择禁止横屏或竖屏显示-->
+<div id="orientLayer" class="mod-orient-layer">
+    <div class="mod-orient-layer__content">
+        <i class="icon mod-orient-layer__icon-orient"></i>
+        <div class="mod-orient-layer__desc">为了更好的体验，请使用竖屏浏览</div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/swipeSlide.min.js"></script>
+<script src="js/dropload.min.js"></script>
+<script src="js/dist/photoswipe.js"></script>
+<script src="js/dist/photoswipe-ui-default.js"></script>
+<script src="js/jweixin-1.0.0.js"></script>
+<script src="js/fastclick.js"></script>
+<script src="js/vote.js"></script>
+<!--适配js代码-->
+<script src="js/mobile-util.js"></script>
+</body>
+</html>

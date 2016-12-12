@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>中奖记录</title>
+    <link href="css/prize.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mobile-util.css">
+</head>
+<body>
+<div class="prize-box-warp">
+    <!--<div class="item head" style="position: fixed">-->
+        <!--<div class="prize-name">-->
+            <!--<em>奖品名称</em>-->
+        <!--</div>-->
+        <!--<div class="prize-date" style="font-size: 14px;">-->
+            <!--<em>抽奖时间</em>-->
+        <!--</div>-->
+    <!--</div>-->
+    <ul id="prize-list">
+      <li>
+          <div class="item">
+              <div class="prize-name">
+                  <em>奖品名称</em>
+              </div>
+              <div class="prize-date" style="font-size: 14px;">
+                  <em>抽奖时间</em>
+              </div>
+          </div>
+      </li>
+    </ul>
+</div>
+
+<!--旋转提示-->    <!-- 选择禁止横屏或竖屏显示-->
+<div id="orientLayer" class="mod-orient-layer">
+    <div class="mod-orient-layer__content">
+        <i class="icon mod-orient-layer__icon-orient"></i>
+        <div class="mod-orient-layer__desc">为了更好的体验，请使用竖屏浏览</div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/prize.js"></script>
+<script src="js/mobile-util.js"></script>
+</body>
+</html>

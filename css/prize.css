@@ -1,0 +1,70 @@
+html, body{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    /*background-color: #ff5152;*/
+    padding: 0;
+    background: url(../images/prizeBG.png) no-repeat;
+    background-size: 100% 100%;
+}
+.prize-box-warp{
+    color: #333333;
+    position: absolute;
+    margin: 0 auto;
+    left: 10%;
+    width: 80%;
+    height: 90%;
+    overflow-y: scroll;
+    top: 5%;
+}
+::-webkit-scrollbar{width:0px}
+.prize-box-warp ul{
+    margin: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+.prize-box-warp li{
+    list-style: none;
+    left: 0;
+    top: 0;
+    /* width: 80%; */
+    /* padding: 0 10%; */
+}
+.head{
+    top: 0;
+    position: fixed;
+    z-index: 9999;
+    background-color: wheat;
+}
+.item{
+    width: 100%;
+    border-bottom: 1px dotted #000000;
+    height: 50px;
+    line-height: 50px;
+}
+.item .prize-name{
+    padding-left: 5%;
+    text-align: center;
+    height: 100%;
+    /* width: 50%; */
+    float: left;
+    font-size: 14px;
+}
+.item .prize-date{
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    float: right;
+    font-size: 12px;
+}
+em{
+    font-weight:700;
+    font-style: normal;
+}
+.item-opacity{
+    background: bisque;
+    opacity: 0.8;
+}
